@@ -1,5 +1,6 @@
 # Backend_Advanced
-# Spring Boot Actuator Notes
+
+## Spring Boot Actuator Notes
 
 Spring Boot Actuator provides production-ready features to help you monitor and manage your Spring Boot application.
 
@@ -44,3 +45,73 @@ Once the Actuator is enabled, the following endpoints can be accessed by default
 - **/actuator/env:**     Displays environment properties.
 - **/actuator/beans:**   Shows all Spring beans loaded in the application.
 - **/actuator/loggers:** Allows viewing and configuring log levels dynamically.
+
+
+## Spring Boot Validation Notes
+
+Spring Boot provides a powerful validation mechanism to ensure data integrity by using annotations. Below are key concepts and steps for implementing validation in Spring Boot.
+
+### 1. Adding Validation Dependency
+
+To enable validation in Spring Boot, you need to add the Hibernate Validator dependency, as it’s the reference implementation of Bean Validation.
+
+### Maven (`pom.xml`):
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+```
+### 2. Common Validation Annotations
+Here are some commonly used validation annotations in Spring Boot:
+
+- **@NotNull:** Ensures that the field is not null.
+- **@NotEmpty:** Ensures that the field is not empty (for collections, strings, etc.).
+- **@NotBlank:** Ensures that the field is not blank (applies to strings).
+- **@Size(min, max):** Validates that the field’s size is between the specified bounds.
+- **@Min(value):** Ensures the numeric field has a minimum value.
+- **@Max(value):** Ensures the numeric field has a maximum value.
+- **@Pattern(regex):** Validates that the field matches a regular expression.
+- **@Email:** Validates that the field is a valid email address.
+
+> Example Code With Implementing Validations
+```java
+import jakarta.validation.constraints.*;
+
+public class User {
+    
+    @NotNull(message = "Name is required")
+    private String name;
+    
+    @Size(min = 6, max = 20, message = "Username must be between 6 and 20 characters")
+    private String username;
+
+    @Email(message = "Email should be valid")
+    private String email;
+
+    @Min(value = 18, message = "Age should not be less than 18")
+    private int age;
+    
+    // Getters and setters
+}
+```
+> Handling Validations in Controller
+
+```java
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    @PostMapping
+    public ResponseEntity<String> createUser(@Valid @RequestBody User user) {
+        // Handle user creation
+        return ResponseEntity.ok("User created successfully");
+    }
+}
+```
