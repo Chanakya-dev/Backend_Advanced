@@ -1,6 +1,6 @@
 # Backend_Advanced
 
-## Spring Boot Actuator Notes
+## Actuator
 
 Spring Boot Actuator provides production-ready features to help you monitor and manage your Spring Boot application.
 
@@ -47,7 +47,7 @@ Once the Actuator is enabled, the following endpoints can be accessed by default
 - **/actuator/loggers:** Allows viewing and configuring log levels dynamically.
 
 
-## Spring Boot Validation Notes
+## Validation
 
 Spring Boot provides a powerful validation mechanism to ensure data integrity by using annotations. Below are key concepts and steps for implementing validation in Spring Boot.
 
