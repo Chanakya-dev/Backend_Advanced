@@ -38,9 +38,9 @@ Once the Actuator is enabled, the following endpoints can be accessed by default
 - management.endpoints.web.exposure.exclude=env
 
 ## 5. Common Actuator Endpoints
-**/actuator/health:**  Shows the health status of the application.
-**/actuator/metrics:** Displays various metrics (CPU, memory usage, etc.).
-**/actuator/info:**    Provides general application information (can be customized).
-**/actuator/env:**     Displays environment properties.
-**/actuator/beans:**   Shows all Spring beans loaded in the application.
-**/actuator/loggers:** Allows viewing and configuring log levels dynamically.
+- **/actuator/health:**  Shows the health status of the application.
+- **/actuator/metrics:** Displays various metrics (CPU, memory usage, etc.).
+- **/actuator/info:**    Provides general application information (can be customized).
+- **/actuator/env:**     Displays environment properties.
+- **/actuator/beans:**   Shows all Spring beans loaded in the application.
+- **/actuator/loggers:** Allows viewing and configuring log levels dynamically.
