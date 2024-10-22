@@ -93,6 +93,10 @@ public class User {
     @Min(value = 18, message = "Age should not be less than 18")
     private int age;
     
+    @Pattern(regexp = "^[a-zA-Z0-9]*$", 
+             message = "Password must only contain alphanumeric characters.")
+    private String password;
+    
     // Getters and setters
 }
 ```
