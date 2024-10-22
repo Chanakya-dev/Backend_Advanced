@@ -31,3 +31,16 @@ Once the Actuator is enabled, the following endpoints can be accessed by default
 - **Beans**: [http://localhost:8080/actuator/beans](http://localhost:8080/actuator/beans)
 
 > Replace `localhost:8080` with your actual server address and port.
+
+## 4 Customize End Points
+
+- management.endpoints.web.exposure.include=health,info
+- management.endpoints.web.exposure.exclude=env
+
+## 5. Common Actuator Endpoints
+**/actuator/health:**  Shows the health status of the application.
+**/actuator/metrics:** Displays various metrics (CPU, memory usage, etc.).
+**/actuator/info:**    Provides general application information (can be customized).
+**/actuator/env:**     Displays environment properties.
+**/actuator/beans:**   Shows all Spring beans loaded in the application.
+**/actuator/loggers:** Allows viewing and configuring log levels dynamically.
