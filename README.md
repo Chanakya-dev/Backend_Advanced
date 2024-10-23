@@ -119,3 +119,45 @@ public class UserController {
     }
 }
 ```
+## Scheduler
+
+- Configuration for POM.XML
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
+</dependency>
+```
+- Service class Configurations
+
+```java
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+
+@Service
+public class MovieService {
+
+    // Method to report current time every 5 seconds
+    @Scheduled(fixedRate = 5000)
+    public void reportCurrentTime() {
+        System.out.println("Current time: " + LocalDateTime.now());
+    }
+
+    // Example of another scheduled task
+    @Scheduled(cron = "0 0 12 * * ?") // Every day at noon
+    public void scheduledTask() {
+        System.out.println("Scheduled task running at noon");
+    }
+}
+```
+# Types of Schedules
+
+- **Fixed Rate**
+  ```java
+  @Scheduled(fixedRate = 5000) // Executes every 5 seconds
+  public void fixedRateTask() {
+      // Task logic here
+  }
+```
