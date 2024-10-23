@@ -170,27 +170,6 @@ public class MovieService {
     }
 
   ```
-  **CRON Expression**
-  ```java
-    @Scheduled(cron = "0 0 12 * * ?") // Executes every day at noon
-    public void cronTask() {
-    // Task logic here
-    }
-
-  ```
-  **Fixed Delay with Initial Delay**
-   ```java
-     @Scheduled(fixedDelay = 3000, initialDelay = 10000) // Executes after an initial delay of 10 seconds, then every 3 seconds
-    public void fixedDelayWithInitialDelay() {
-    // Task logic here
-    }
-   ```
- **Fixed Rate with Initial Delay**
-   ```java
-     @Scheduled(fixedDelay = 3000, initialDelay = 10000) // Executes after an initial delay of 10 seconds, then every 3 seconds
-    public void fixedDelayWithInitialDelay() {
-    // Task logic here
-    }
-   ```
+ 
     
     
