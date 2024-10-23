@@ -152,7 +152,7 @@ public class MovieService {
     }
 }
 ```
-# Types of Schedules
+## Types of Schedules
 
 **Fixed Rate**
   ```java
