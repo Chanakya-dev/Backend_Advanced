@@ -128,7 +128,7 @@ public class UserController {
     <artifactId>spring-boot-starter</artifactId>
 </dependency>
 ```
-- Service class Configurations
+## Service class Configurations
 
 ```java
 import org.springframework.scheduling.annotation.Scheduled;
@@ -152,6 +152,22 @@ public class MovieService {
     }
 }
 ```
+## Configuration of Application Class
+```java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+@SpringBootApplication
+@EnableScheduling
+public class SchedulingApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SchedulingApplication.class, args);
+    }
+}
+```
+
 ## Types of Schedules
 
 **Fixed Rate**
@@ -162,7 +178,9 @@ public class MovieService {
       // Task logic here
   }
   ```
-  **Fixed Delay**
+- Runs the task at a fixed interval, starting the next execution as soon as the interval is reached, regardless of when the previous task finished.
+
+**Fixed Delay**
  ```java
     @Scheduled(fixedDelay = 3000) // Executes 3 seconds after the last execution finishes
          public void fixedDelayTask() {
@@ -170,6 +188,174 @@ public class MovieService {
     }
 
   ```
- 
-    
+ - Runs the task with a delay between the completion of the last execution and the start of the next one.
+
+**Initial Delay**
+```java
+@Component
+public class InitialDelayTask {
+
+    @Scheduled(fixedRate = 5000, initialDelay = 10000) // Start after 10 seconds
+    public void runTaskWithInitialDelay() {
+        System.out.println("Task running with initial delay - " + System.currentTimeMillis());
+    }
+}
+```
+**Cron Expression**
+```java
+@Component
+public class CronTask {
+
+    @Scheduled(cron = "0 0 * * * *") // Runs at the start of every hour
+    public void runTaskWithCron() {
+        System.out.println("Task running on the hour - " + System.currentTimeMillis());
+    }
+}
+```
+## Lombok
+
+### Maven
+```xml
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.26</version> <!-- or the latest version -->
+    <scope>provided</scope>
+</dependency>
+```
+## Annotations of Lombok
+
+## Lombok Annotations
+
+Lombok is a Java library that helps reduce boilerplate code by automatically generating common methods like getters, setters, constructors, etc. Below is a summary of key Lombok annotations, their purposes, and usage examples.
+
+### 1. `@Data`
+- **Purpose**: A convenient shorthand that bundles the functionalities of several annotations: `@Getter`, `@Setter`, `@ToString`, `@EqualsAndHashCode`, and `@RequiredArgsConstructor`.
+- **Usage**:
+    ```java
+    import lombok.Data;
+
+    @Data
+    public class User {
+        private String name;
+        private int age;
+    }
+    ```
+
+### 2. `@Getter`
+- **Purpose**: Automatically generates getter methods for the fields of the class.
+- **Usage**:
+    ```java
+    import lombok.Getter;
+
+    public class User {
+        @Getter
+        private String name;
+    }
+    ```
+
+### 3. `@Setter`
+- **Purpose**: Automatically generates setter methods for the fields of the class.
+- **Usage**:
+    ```java
+    import lombok.Setter;
+
+    public class User {
+        @Setter
+        private String name;
+    }
+    ```
+
+### 4. `@ToString`
+- **Purpose**: Generates a `toString()` method that returns a string representation of the object, including all fields.
+- **Usage**:
+    ```java
+    import lombok.ToString;
+
+    @ToString
+    public class User {
+        private String name;
+        private int age;
+    }
+    ```
+
+### 5. `@EqualsAndHashCode`
+- **Purpose**: Generates `equals()` and `hashCode()` methods based on the fields of the class.
+- **Usage**:
+    ```java
+    import lombok.EqualsAndHashCode;
+
+    @EqualsAndHashCode
+    public class User {
+        private String name;
+        private int age;
+    }
+    ```
+
+### 6. `@NoArgsConstructor`
+- **Purpose**: Generates a constructor with no parameters.
+- **Usage**:
+    ```java
+    import lombok.NoArgsConstructor;
+
+    @NoArgsConstructor
+    public class User {
+        private String name;
+    }
+    ```
+
+### 7. `@AllArgsConstructor`
+- **Purpose**: Generates a constructor with one parameter for each field in the class.
+- **Usage**:
+    ```java
+    import lombok.AllArgsConstructor;
+
+    @AllArgsConstructor
+    public class User {
+        private String name;
+        private int age;
+    }
+    ```
+
+### 8. `@RequiredArgsConstructor`
+- **Purpose**: Generates a constructor for all final fields and fields marked with `@NonNull`.
+- **Usage**:
+    ```java
+    import lombok.RequiredArgsConstructor;
+    import lombok.NonNull;
+
+    @RequiredArgsConstructor
+    public class User {
+        private final Long id; // Must be initialized
+        @NonNull
+        private String name; // Cannot be null
+    }
+    ```
+
+###  9. `@NonNull`
+- **Purpose**: Indicates that a field should not be null. Lombok will add a null check in the generated constructor or setter methods.
+- **Usage**:
+    ```java
+    import lombok.NonNull;
+
+    public class User {
+        @NonNull
+        private String name; // Will throw NullPointerException if null
+    }
+    ```
+
+###  10. `@Slf4j`
+- **Purpose**: Provides a logger instance (`log`) for the class, enabling easy logging.
+- **Usage**:
+    ```java
+    import lombok.extern.slf4j.Slf4j;
+
+    @Slf4j
+    public class User {
+        public void logDetails() {
+            log.info("User details");
+        }
+    }
+    ```
+
     
