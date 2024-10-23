@@ -437,3 +437,25 @@ public class MovieService {
         return movieRepository.findByName(name);
     }
 }
+```
+**Explanation**
+- @Cacheable(value = "movies", key = "#name"): This annotation indicates that the result of the findByName method will be cached in a cache named "movies". The cached result will be stored using the name parameter as the key.
+- When the method is called with the same name, the cached result will be returned instead of executing the method again, improving performance.
+
+### Spring Boot Application Configuration
+```java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
+
+@SpringBootApplication
+@EnableCaching
+public class MovieAppApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(MovieAppApplication.class, args);
+    }
+}
+```
+### Explanation of Configuration
+- **@SpringBootApplication:** This annotation marks the main class of a Spring Boot application and enables auto-configuration and component scanning.
+- **@EnableCaching:** This annotation enables the caching capability in the application, allowing you to use the caching annotations like @Cacheable.
