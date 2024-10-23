@@ -459,3 +459,4 @@ public class MovieAppApplication {
 ### Explanation of Configuration
 - **@SpringBootApplication:** This annotation marks the main class of a Spring Boot application and enables auto-configuration and component scanning.
 - **@EnableCaching:** This annotation enables the caching capability in the application, allowing you to use the caching annotations like @Cacheable.
+
